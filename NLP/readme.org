@@ -1,0 +1,5 @@
+* NLP项目
+** Chinese word segmentation -- 中文分词
+** Search Engine  -- 简单文本搜索引擎实现(倒排索引)
+** Text Classify -- 文本分类
+** WebContent classify -- 网页内容分类
