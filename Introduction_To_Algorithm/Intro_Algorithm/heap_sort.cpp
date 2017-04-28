@@ -92,36 +92,71 @@ void buildMaxHeap(vector<int>& arr,int arrSize)
 	int halfLen = aLen / 2;
 	for (int i = halfLen; i >= 0; i--)
 	{
-		max_heapify(arr, i + 1, arrSize);
+max_heapify(arr, i + 1, arrSize);
 	}
 }
 
-void buildMinHeap(vector<int>& arr,int arrSize)
+void buildMinHeap(vector<int>& arr, int arrSize)
 {
 	int arrLen = arrSize - 1;
 	int halfLen = arrLen / 2;
 	for (int i = halfLen; i >= 0; i--)
 	{
-		min_heapify(arr, i+1, arrSize);
+		min_heapify(arr, i + 1, arrSize);
 	}
 }
 
 // isDesc  :    true for desc order     false for asc order
-void heapSort(vector<int>& arr,bool isDesc)
+void heapSort(vector<int>& arr, bool isDesc)
 {
 	vector<int> res;
-	if(isDesc)
+	if (isDesc)
 		buildMinHeap(arr, arr.size());
 	else
-		buildMaxHeap(arr,arr.size());
+		buildMaxHeap(arr, arr.size());
 
-	for (int i = arr.size()-1; i >= 1; i--)
+	for (int i = arr.size() - 1; i >= 1; i--)
 	{
 		swap(arr[0], arr[i]);
 		if (isDesc)
 			min_heapify(arr, 1, i);
 		else
-			max_heapify(arr,1, i);
+			max_heapify(arr, 1, i);
+	}
+}
+
+
+void heapMaxUp(vector<int>& arr, int flag)
+{
+	if (flag == 1) return;
+	int parent = flag / 2 - 1;
+	if (arr[parent] < arr[flag - 1])
+	{
+		swap(arr[parent], arr[flag - 1]);
+		heapMaxUp(arr, parent + 1);
+	}
+}
+
+void heapMinUp(vector<int>& arr, int flag)
+{
+	if (flag == 1) return;
+	int parent = flag / 2 - 1;
+	if (arr[parent] > arr[flag - 1])
+	{
+		swap(arr[parent], arr[flag - 1]);
+		heapMaxUp(arr, parent + 1);
+	}
+}
+void heapInsert(vector<int>& arr, int newEle, bool isMaxHeap)
+{
+	arr.push_back(newEle);
+	if (isMaxHeap)
+	{
+		heapMaxUp(arr, arr.size());
+	}
+	else
+	{
+		heapMinUp(arr, arr.size());
 	}
 }
 
@@ -154,6 +189,17 @@ int main()
 	for (size_t i = 0; i < b.size(); i++)
 	{
 		cout << b[i] << " ";
+	}
+
+	vector<int> c;
+	for (int i = 0; i < b.size(); i++)
+	{
+		heapInsert(c, b[i], false);
+}
+	cout << "\n";
+	for (size_t i = 0; i < c.size(); i++)
+	{
+		cout << c[i] << " ";
 	}
 	//for (size_t i = 0; i < a.size(); i++)
 	//{
