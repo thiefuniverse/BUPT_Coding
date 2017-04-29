@@ -160,8 +160,41 @@ void heapInsert(vector<int>& arr, int newEle, bool isMaxHeap)
 	}
 }
 
+
+bool findYoungMatrix(vector<vector<int>>& arr,int ele)
+{
+	int rows = arr.size(), cols;
+	if (rows == 0)
+		return false;
+	else
+	{
+		cols = arr[0].size();
+	}
+
+	int flagR = 0, flagC = cols - 1;
+	while (flagR < rows&& flagC >= 0)
+	{
+		if (arr[flagR][flagC] == ele)
+			return true;
+		if (arr[flagR][flagC] > ele)
+			flagC--;
+		else
+		{
+			flagR++;
+		}
+	}
+	return false;
+}
+
 int main()
 {
+	vector<vector<int>> all;
+	all.push_back(vector<int>{1, 2, 8, 9});
+	all.push_back(vector<int>{2,4,9,12});
+	all.push_back(vector<int>{4,6,10,13});
+	all.push_back(vector<int>{6,8,11,15});
+	cout << findYoungMatrix(all,7);
+	cout << "  **";
 	cout << isMaxHeap(vector<int>{23, 17, 14, 6, 13, 10, 1, 5, 4, 99});
 	vector<int> a{ 6,7,3,8,9 };
 	min_heapify(a, 1, a.size());
