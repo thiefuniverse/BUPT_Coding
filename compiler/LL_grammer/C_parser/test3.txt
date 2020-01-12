@@ -1,0 +1,57 @@
+#include <stdio.h>
+ 
+#include <stdlib.h>
+ 
+#include <string.h>
+ 
+int N=0;
+ 
+unsigned long long int one=0;
+ 
+unsigned long long int two=0;
+ 
+unsigned long long int t1=0;
+ 
+unsigned long long int t2=0;
+ 
+unsigned long long int in=0;
+ 
+ 
+ 
+int main(){
+ 
+    while (scanf("%d",&N)!=EOF) {
+ 
+    int n=N;
+ 
+    while (n--) {
+ 
+        scanf("%lld",&in);
+ 
+            t1=t2=in;
+ 
+            t1&=one;
+ 
+            t2&=two;
+ 
+            in^=(t1+t2);
+ 
+            two-=t2;
+ 
+            one-=t1;
+ 
+            one+=in;
+ 
+            two+=t1;
+ 
+        }
+ 
+        printf("%lld\n",one);
+ 
+        one=two=t1=t2=in=0;
+ 
+    }
+ 
+    return 0;
+ 
+}
